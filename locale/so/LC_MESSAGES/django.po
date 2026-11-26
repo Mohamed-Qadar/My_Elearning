@@ -1,0 +1,1221 @@
+# Somali translation of the E-Learning Platform.
+#
+# Every Somali text of the site is in this one file, so it can be reviewed in one place.
+# The translations were written together with the code and have NOT yet been reviewed
+# by a native speaker. Please correct them freely.
+#
+# How to edit: change only the msgstr lines. Keep placeholders such as %(title)s and
+# {size} exactly as they are. Then compile with:  python manage.py compilemessages
+# (that command needs GNU gettext to be installed).
+msgid ""
+msgstr ""
+"Project-Id-Version: elearning\n"
+"Language: so\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# ---------- Texts of this project ----------
+
+#: templates/instructor/lessons.html
+msgid "A course is made of sections, and each section holds lessons. Use the arrows to change the order."
+msgstr "Koorsadu waxay ka kooban tahay qaybo, qayb kastana waxay leedahay casharro. Isticmaal fallaadhaha si aad u beddesho kala horraynta."
+
+#: learning/models.py
+msgid "A free enrollment is not granted by anyone."
+msgstr "Isdiiwaangelinta bilaashka ah cidina ma bixiso."
+
+#: learning/models.py
+msgid "A paid course cannot be joined through free enrollment."
+msgstr "Koorso lacag leh lagama qayb geli karo isdiiwaangelinta bilaashka ah."
+
+#: templates/courses/detail.html
+msgid "About this course"
+msgstr "Ku saabsan koorsadan"
+
+#: templates/includes/footer.html
+msgid "Account"
+msgstr "Akoon"
+
+#: templates/student/dashboard.html
+msgid "Account type"
+msgstr "Nooca akoonka"
+
+#: templates/instructor/lesson_form.html
+msgid "Add a lesson"
+msgstr "Ku dar cashar"
+
+#: templates/instructor/lessons.html
+msgid "Add a section"
+msgstr "Ku dar qayb"
+
+#: courses/views.py
+msgid "Add at least one lesson before publishing this course."
+msgstr "Ku dar ugu yaraan hal cashar ka hor inta aadan daabicin koorsadan."
+
+#: templates/instructor/lesson_form.html
+msgid "Add lesson"
+msgstr "Ku dar cashar"
+
+#: templates/instructor/lessons.html
+msgid "Add section"
+msgstr "Ku dar qayb"
+
+#: courses/models.py
+msgid "Advanced"
+msgstr "Sare"
+
+#: templates/courses/catalog.html
+msgid "All"
+msgstr "Dhammaan"
+
+#: templates/courses/detail.html
+msgid "All courses"
+msgstr "Dhammaan koorsooyinka"
+
+#: courses/models.py
+msgid "All levels"
+msgstr "Dhammaan heerarka"
+
+#: templates/accounts/register.html
+msgid "Already have an account?"
+msgstr "Akoon ma leedahay?"
+
+#: courses/models.py
+msgid "Anyone can watch a free preview lesson before buying the course."
+msgstr "Qof kastaa wuu daawan karaa casharka hordhaca bilaashka ah ka hor inta uusan koorsada iibsan."
+
+#: courses/models.py
+msgid "Arabic"
+msgstr "Carabi"
+
+#: courses/forms.py
+msgid "Attach to"
+msgstr "Ku lifaaq"
+
+#: templates/instructor/lesson_form.html
+msgid "Back to content"
+msgstr "Ku noqo nuxurka"
+
+#: templates/instructor/course_form.html
+msgid "Back to course"
+msgstr "Ku noqo koorsada"
+
+#: templates/instructor/course_detail.html
+msgid "Back to my courses"
+msgstr "Ku noqo koorsooyinkayga"
+
+#: courses/views.py
+msgid "Basic information"
+msgstr "Xogta aasaasiga ah"
+
+#: templates/home.html
+msgid "Become an instructor"
+msgstr "Noqo macallin"
+
+#: courses/models.py
+msgid "Beginner"
+msgstr "Bilow"
+
+#: templates/student/base.html
+msgid "Browse"
+msgstr "Daalaco"
+
+#: templates/home.html
+msgid "Browse courses"
+msgstr "Daalaco koorsooyinka"
+
+#: templates/accounts/profile.html
+msgid "Cancel"
+msgstr "Jooji"
+
+#: templates/home.html
+msgid "Categories"
+msgstr "Qaybo"
+
+#: templates/courses/catalog.html
+msgid "Category"
+msgstr "Qayb"
+
+#: templates/accounts/profile.html
+msgid "Change password"
+msgstr "Beddel furaha sirta ah"
+
+#: courses/forms.py
+msgid "Choose a category"
+msgstr "Dooro qayb"
+
+#: courses/views.py
+msgid "Choose a file to upload."
+msgstr "Dooro fayl aad soo geliso."
+
+#: templates/courses/catalog.html
+msgid "Clear filters"
+msgstr "Tirtir shaandhaynta"
+
+#: templates/instructor/base.html
+msgid "Close"
+msgstr "Xir"
+
+#: templates/student/lesson_player.html
+msgid "Completed (undo)"
+msgstr "Waa la dhammeeyay (ka noqo)"
+
+#: accounts/forms.py
+msgid "Confirm password"
+msgstr "Xaqiiji furaha sirta ah"
+
+#: templates/instructor/courses.html
+msgid "Content"
+msgstr "Nuxur"
+
+#: templates/student/dashboard.html
+msgid "Continue"
+msgstr "Sii wad"
+
+#: templates/courses/detail.html
+msgid "Continue learning"
+msgstr "Sii wad waxbarashada"
+
+#: templates/instructor/students.html
+msgid "Course"
+msgstr "Koorso"
+
+#: templates/home.html
+msgid "Course categories"
+msgstr "Qaybaha koorsooyinka"
+
+#: templates/courses/detail.html
+msgid "Course content"
+msgstr "Nuxurka koorsada"
+
+#: courses/views.py
+msgid "Course details"
+msgstr "Faahfaahinta koorsada"
+
+#: courses/views.py
+msgid "Course details saved."
+msgstr "Faahfaahinta koorsada waa la kaydiyay."
+
+#: templates/student/my_courses.html
+msgid "Course page"
+msgstr "Bogga koorsada"
+
+#: courses/views.py
+msgid "Course published."
+msgstr "Koorsada waa la daabacay."
+
+#: courses/views.py
+msgid "Course saved as a draft. Now add sections and lessons."
+msgstr "Koorsada waxaa loo kaydiyay qabyo ahaan. Hadda ku dar qaybo iyo casharro."
+
+#: courses/views.py
+msgid "Course unpublished. It is a draft again."
+msgstr "Koorsada daabacaaddeeda waa laga noqday. Mar kale waa qabyo."
+
+#: templates/courses/catalog.html
+msgid "Courses"
+msgstr "Koorsooyin"
+
+#: templates/home.html
+msgid "Courses are coming soon"
+msgstr "Koorsooyin ayaa dhowaan imanaya"
+
+#: templates/student/dashboard.html
+msgid "Courses finished"
+msgstr "Koorsooyinka la dhammeeyay"
+
+#: templates/courses/catalog.html
+msgid "Courses found"
+msgstr "Koorsooyinka la helay"
+
+#: templates/student/dashboard.html
+msgid "Courses you may like"
+msgstr "Koorsooyin laga yaabo inaad jeclaato"
+
+#: templates/instructor/base.html
+msgid "Create"
+msgstr "Samee"
+
+#: templates/instructor/base.html
+msgid "Create a course"
+msgstr "Samee koorso"
+
+#: templates/home.html
+msgid "Create a free account"
+msgstr "Samee akoon bilaash ah"
+
+#: templates/accounts/register.html
+msgid "Create account"
+msgstr "Samee akoon"
+
+#: templates/accounts/login.html
+msgid "Create an account"
+msgstr "Samee akoon"
+
+#: templates/accounts/register.html
+msgid "Create your account"
+msgstr "Samee akoonkaaga"
+
+#: templates/instructor/courses.html
+msgid "Create your first course"
+msgstr "Samee koorsadaada koowaad"
+
+#: templates/instructor/courses.html
+msgid "Create, edit and publish your courses."
+msgstr "Samee, wax ka beddel oo daabac koorsooyinkaaga."
+
+#: templates/instructor/course_form.html
+msgid "Current thumbnail"
+msgstr "Sawirka hadda"
+
+#: templates/student/base.html
+msgid "Dashboard"
+msgstr "Guddiga"
+
+#: templates/instructor/lessons.html
+msgid "Delete lesson"
+msgstr "Tirtir casharka"
+
+#: templates/instructor/lessons.html
+msgid "Delete material"
+msgstr "Tirtir agabka"
+
+#: templates/instructor/lessons.html
+msgid "Delete section"
+msgstr "Tirtir qaybta"
+
+#: templates/instructor/lessons.html
+msgid "Delete the lesson “%(title)s” and its materials?"
+msgstr "Ma tirtirtaa casharka “%(title)s” iyo agabkiisa?"
+
+#: templates/instructor/lessons.html
+msgid "Delete the material “%(title)s”?"
+msgstr "Ma tirtirtaa agabka “%(title)s”?"
+
+#: templates/instructor/lessons.html
+msgid "Delete the section “%(title)s” with all of its lessons and materials?"
+msgstr "Ma tirtirtaa qaybta “%(title)s” oo ay la socdaan dhammaan casharradeeda iyo agabkeeda?"
+
+#: courses/forms.py
+msgid "Description"
+msgstr "Sharraxaad"
+
+#: templates/instructor/lessons.html
+msgid "Download"
+msgstr "Soo deji"
+
+#: templates/instructor/course_detail.html
+msgid "Draft"
+msgstr "Qabyo"
+
+#: templates/instructor/dashboard.html
+msgid "Draft courses"
+msgstr "Koorsooyinka qabyada ah"
+
+#: templates/instructor/courses.html
+msgid "Edit"
+msgstr "Wax ka beddel"
+
+#: templates/instructor/course_form.html
+msgid "Edit course details"
+msgstr "Wax ka beddel faahfaahinta koorsada"
+
+#: templates/instructor/course_detail.html
+msgid "Edit details"
+msgstr "Wax ka beddel faahfaahinta"
+
+#: templates/instructor/lesson_form.html
+msgid "Edit lesson"
+msgstr "Wax ka beddel casharka"
+
+#: templates/student/dashboard.html
+msgid "Edit profile"
+msgstr "Wax ka beddel xogta"
+
+#: accounts/forms.py
+msgid "Email address"
+msgstr "Cinwaanka iimaylka"
+
+#: accounts/forms.py
+msgid "Email address or phone number"
+msgstr "Iimayl ama lambarka taleefanka"
+
+#: courses/models.py
+msgid "English"
+msgstr "Ingiriisi"
+
+#: templates/courses/detail.html
+msgid "Enroll for free"
+msgstr "Bilaash isku diiwaangeli"
+
+#: learning/views.py
+msgid "Enroll in this course to open this lesson."
+msgstr "Isku diiwaangeli koorsadan si aad u furto casharkan."
+
+#: learning/views.py
+msgid "Enroll in this course to start learning."
+msgstr "Isku diiwaangeli koorsadan si aad u bilowdo waxbarashada."
+
+#: templates/student/dashboard.html
+msgid "Enrolled courses"
+msgstr "Koorsooyinka aad ku diiwaangashan tahay"
+
+#: templates/instructor/students.html
+msgid "Enrolled on"
+msgstr "Taariikhda isdiiwaangelinta"
+
+#: courses/models.py
+msgid "Enter 0 for a free course."
+msgstr "Geli 0 haddii koorsadu bilaash tahay."
+
+#: courses/models.py
+msgid "Enter a valid YouTube video link, for example https://www.youtube.com/watch?v=..."
+msgstr "Geli xiriiriye muuqaal YouTube oo sax ah, tusaale https://www.youtube.com/watch?v=..."
+
+#: accounts/models.py
+msgid "Enter a valid phone number."
+msgstr "Geli lambar taleefan oo sax ah."
+
+#: accounts/models.py
+msgid "Enter an email address or a phone number."
+msgstr "Geli cinwaan iimayl ama lambar taleefan."
+
+#: templates/includes/footer.html
+msgid "Explore"
+msgstr "Sahami"
+
+#: templates/home.html
+msgid "Featured courses"
+msgstr "Koorsooyinka la xushay"
+
+#: courses/forms.py
+msgid "File"
+msgstr "Fayl"
+
+#: courses/views.py
+msgid "File replaced."
+msgstr "Faylka waa la beddelay."
+
+#: templates/instructor/lessons.html
+msgid "Files for your students. Only you and students enrolled in this course can open them. Written notes are added inside each lesson."
+msgstr "Faylal loogu talagalay ardaydaada. Adiga iyo ardayda ku diiwaangashan koorsadan oo keliya ayaa furi kara. Qoraallada waxaa lagu daraa cashar kasta gudihiisa."
+
+#: templates/student/dashboard.html
+msgid "Find a course"
+msgstr "Raadi koorso"
+
+#: templates/home.html
+msgid "Find a subject that interests you."
+msgstr "Hel maaddo ku xiiso gelisa."
+
+#: templates/instructor/lessons.html
+msgid "For example: Introduction"
+msgstr "Tusaale: Hordhac"
+
+#: templates/courses/catalog.html
+msgid "For example: Mathematics"
+msgstr "Tusaale: Xisaab"
+
+#: templates/includes/course_price.html
+msgid "Free"
+msgstr "Bilaash"
+
+#: templates/courses/detail.html
+msgid "Free preview"
+msgstr "Hordhac bilaash ah"
+
+#: templates/instructor/students.html
+msgid "Go to my courses"
+msgstr "Tag koorsooyinkayga"
+
+#: templates/instructor/dashboard.html
+msgid "Here is how your courses are doing."
+msgstr "Halkan ka eeg xaaladda koorsooyinkaaga."
+
+#: templates/includes/footer.html
+msgid "Home"
+msgstr "Bogga hore"
+
+#: accounts/forms.py
+msgid "Incorrect email address, phone number or password."
+msgstr "Iimaylka, lambarka taleefanka ama furaha sirta ah waa khalad."
+
+#: templates/courses/detail.html
+msgid "Instructor"
+msgstr "Macallin"
+
+#: templates/instructor/base.html
+msgid "Instructor account"
+msgstr "Akoon macallin"
+
+#: templates/instructor/dashboard.html
+msgid "Instructor dashboard"
+msgstr "Guddiga macallinka"
+
+#: templates/home.html
+msgid "Instructors"
+msgstr "Macallimiin"
+
+#: courses/models.py
+msgid "Intermediate"
+msgstr "Dhexe"
+
+#: courses/models.py
+msgid "JPG, PNG or WebP, up to {size} MB."
+msgstr "JPG, PNG ama WebP, ilaa {size} MB."
+
+#: templates/courses/catalog.html
+msgid "Language"
+msgstr "Luqad"
+
+#: templates/includes/footer.html
+msgid "Learn new skills from experienced instructors, at your own pace."
+msgstr "Xirfado cusub ka baro macallimiin khibrad leh, waqtiga kuu habboon."
+
+#: templates/home.html
+msgid "Learn without limits"
+msgstr "Wax baro xad la'aan"
+
+#: courses/forms.py
+msgid "Learning objectives"
+msgstr "Yoolalka waxbarashada"
+
+#: templates/student/dashboard.html
+msgid "Learning progress"
+msgstr "Horumarka waxbarashada"
+
+#: templates/instructor/lessons.html
+msgid "Lesson"
+msgstr "Cashar"
+
+#: courses/views.py
+msgid "Lesson added."
+msgstr "Casharka waa lagu daray."
+
+#: learning/views.py
+msgid "Lesson completed."
+msgstr "Casharka waa la dhammeeyay."
+
+#: courses/views.py
+msgid "Lesson deleted."
+msgstr "Casharka waa la tirtiray."
+
+#: templates/student/lesson_player.html
+msgid "Lesson notes"
+msgstr "Qoraallada casharka"
+
+#: courses/views.py
+msgid "Lesson saved."
+msgstr "Casharka waa la kaydiyay."
+
+#: templates/courses/detail.html
+msgid "Lessons"
+msgstr "Casharro"
+
+#: templates/student/dashboard.html
+msgid "Lessons completed"
+msgstr "Casharrada la dhammeeyay"
+
+#: templates/student/dashboard.html
+msgid "Lessons you open will appear here."
+msgstr "Casharrada aad furto halkan ayay ka muuqan doonaan."
+
+#: templates/courses/catalog.html
+msgid "Level"
+msgstr "Heer"
+
+#: templates/accounts/login.html
+msgid "Log in"
+msgstr "Gal"
+
+#: templates/courses/detail.html
+msgid "Log in to enroll for free"
+msgstr "Gal si aad bilaash isugu diiwaangeliso"
+
+#: templates/includes/navbar.html
+msgid "Log out"
+msgstr "Ka bax"
+
+#: templates/instructor/course_detail.html
+msgid "Manage content"
+msgstr "Maamul nuxurka"
+
+#: templates/courses/detail.html
+msgid "Manage this course"
+msgstr "Maamul koorsadan"
+
+#: templates/student/lesson_player.html
+msgid "Mark as completed"
+msgstr "Calaamadee in la dhammeeyay"
+
+#: courses/views.py
+msgid "Material deleted."
+msgstr "Agabka waa la tirtiray."
+
+#: courses/views.py
+msgid "Material uploaded."
+msgstr "Agabka waa la soo geliyay."
+
+#: templates/instructor/course_detail.html
+msgid "Materials"
+msgstr "Agab"
+
+#: templates/student/dashboard.html
+msgid "Member since"
+msgstr "Xubin tan iyo"
+
+#: accounts/models.py
+msgid "Moderator"
+msgstr "Kormeere"
+
+#: templates/instructor/lessons.html
+msgid "Move down"
+msgstr "Hoos u dhig"
+
+#: templates/instructor/lessons.html
+msgid "Move lesson down"
+msgstr "Casharka hoos u dhig"
+
+#: templates/instructor/lessons.html
+msgid "Move lesson up"
+msgstr "Casharka kor u qaad"
+
+#: templates/instructor/lessons.html
+msgid "Move section down"
+msgstr "Qaybta hoos u dhig"
+
+#: templates/instructor/lessons.html
+msgid "Move section up"
+msgstr "Qaybta kor u qaad"
+
+#: templates/instructor/lessons.html
+msgid "Move up"
+msgstr "Kor u qaad"
+
+#: templates/instructor/base.html
+msgid "My courses"
+msgstr "Koorsooyinkayga"
+
+#: templates/home.html
+msgid "My learning"
+msgstr "Waxbarashadayda"
+
+#: templates/accounts/profile.html
+msgid "My profile"
+msgstr "Xogtayda"
+
+#: templates/instructor/lessons.html
+msgid "New file"
+msgstr "Fayl cusub"
+
+#: templates/accounts/login.html
+msgid "New here?"
+msgstr "Ma ku cusub tahay halkan?"
+
+#: templates/instructor/lessons.html
+msgid "New section title"
+msgstr "Cinwaanka cusub ee qaybta"
+
+#: templates/courses/catalog.html
+msgid "Next"
+msgstr "Xiga"
+
+#: templates/home.html
+msgid "No courses have been published yet. Please check back later."
+msgstr "Weli koorso lama daabicin. Fadlan mar dambe soo noqo."
+
+#: templates/courses/catalog.html
+msgid "No courses match your search"
+msgstr "Koorso u dhiganta raadintaada lama helin"
+
+#: templates/courses/detail.html
+msgid "No lessons in this section yet."
+msgstr "Qaybtan weli casharro kuma jiraan."
+
+#: templates/instructor/lessons.html
+msgid "No materials uploaded yet."
+msgstr "Weli agab lama soo gelin."
+
+#: templates/instructor/students.html
+msgid "No students have enrolled in your courses yet."
+msgstr "Weli arday iskuma diiwaangelin koorsooyinkaaga."
+
+#: templates/instructor/lessons.html
+msgid "Notes"
+msgstr "Qoraallo"
+
+#: templates/instructor/lesson_form.html
+msgid "Notes and learning materials"
+msgstr "Qoraallada iyo agabka waxbarashada"
+
+#: templates/home.html
+msgid "Online courses from experienced instructors, in English and Somali. Study at your own pace, on any device."
+msgstr "Koorsooyin online ah oo ay bixiyaan macallimiin khibrad leh, Ingiriisi iyo Soomaali. Wax ku baro waqtigaaga, qalab kasta."
+
+#: templates/courses/detail.html
+msgid "Online payment is not available yet. We are preparing secure payment options, so this course cannot be bought at the moment. Free preview lessons are open to everyone."
+msgstr "Lacag bixinta onlaynka ah weli lama heli karo. Waxaan diyaarinaynaa habab lacag bixin oo ammaan ah, sidaas darteed koorsadan hadda lama iibsan karo. Casharrada horudhaca ah ee bilaashka ah waa u furan yihiin qof walba."
+
+#: learning/models.py
+msgid "Only a superuser can grant an enrollment by hand."
+msgstr "Maamulaha sare oo keliya ayaa gacanta ku bixin kara isdiiwaangelin."
+
+#: templates/courses/detail.html
+msgid "Only student accounts can enroll in courses."
+msgstr "Akoonnada ardayda oo keliya ayaa isku diiwaangelin kara koorsooyinka."
+
+#: templates/home.html
+msgid "Our instructors are reviewed before they teach. Share your knowledge, build your courses and reach students everywhere."
+msgstr "Macallimiinteenna waa la hubiyaa ka hor inta aysan wax dhigin. La wadaag aqoontaada, dhis koorsooyinkaaga, gaadhna arday meel kasta jooga."
+
+#: templates/instructor/base.html
+msgid "Overview"
+msgstr "Guudmar"
+
+#: courses/models.py
+msgid "PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx) or text (.txt), up to {size} MB."
+msgstr "PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx) ama qoraal (.txt), ilaa {size} MB."
+
+#: templates/courses/catalog.html
+msgid "Pages"
+msgstr "Bogag"
+
+#: templates/includes/course_price.html
+msgid "Paid"
+msgstr "Lacag leh"
+
+#: accounts/forms.py
+msgid "Password"
+msgstr "Furaha sirta ah"
+
+#: templates/courses/detail.html
+msgid "Payment Coming Soon"
+msgstr "Lacag bixintu waa soo socotaa"
+
+#: accounts/forms.py
+msgid "Phone number"
+msgstr "Lambarka taleefanka"
+
+#: templates/student/dashboard.html
+msgid "Pick up where you left off."
+msgstr "Ka sii wad halkii aad ku joogsatay."
+
+#: templates/instructor/base.html
+msgid "Please confirm"
+msgstr "Fadlan xaqiiji"
+
+#: templates/instructor/course_form.html
+msgid "Please correct the fields marked below."
+msgstr "Fadlan sax meelaha hoos lagu calaamadeeyay."
+
+#: templates/courses/catalog.html
+msgid "Previous"
+msgstr "Kii hore"
+
+#: courses/forms.py
+msgid "Price (%(currency)s)"
+msgstr "Qiimaha (%(currency)s)"
+
+#: templates/instructor/base.html
+msgid "Profile"
+msgstr "Xog"
+
+#: templates/instructor/course_detail.html
+msgid "Publish"
+msgstr "Daabac"
+
+#: templates/courses/detail.html
+msgid "Published"
+msgstr "La daabacay"
+
+#: templates/instructor/dashboard.html
+msgid "Published courses"
+msgstr "Koorsooyinka la daabacay"
+
+#: templates/instructor/dashboard.html
+msgid "Recent courses"
+msgstr "Koorsooyinkii ugu dambeeyay"
+
+#: templates/student/dashboard.html
+msgid "Recently opened lessons"
+msgstr "Casharradii dhowaan la furay"
+
+#: templates/home.html
+msgid "Recently published"
+msgstr "Kuwa dhowaan la daabacay"
+
+#: templates/includes/footer.html
+msgid "Register"
+msgstr "Isdiiwaangeli"
+
+#: templates/instructor/lessons.html
+msgid "Rename"
+msgstr "Magac beddel"
+
+#: templates/instructor/lessons.html
+msgid "Replace"
+msgstr "Beddel"
+
+#: templates/instructor/course_form.html
+msgid "Save as draft"
+msgstr "U kaydi qabyo ahaan"
+
+#: templates/instructor/course_form.html
+msgid "Save changes"
+msgstr "Kaydi isbeddellada"
+
+#: templates/instructor/lesson_form.html
+msgid "Save lesson"
+msgstr "Kaydi casharka"
+
+#: templates/instructor/lessons.html
+msgid "Save name"
+msgstr "Kaydi magaca"
+
+#: templates/accounts/profile.html
+msgid "Save profile"
+msgstr "Kaydi xogta"
+
+#: templates/instructor/course_form.html
+msgid "Saving does not change whether the course is published."
+msgstr "Kaydintu ma beddesho in koorsadu daabacan tahay iyo in kale."
+
+#: templates/courses/catalog.html
+msgid "Search"
+msgstr "Raadi"
+
+#: templates/courses/catalog.html
+msgid "Search and filter all published courses."
+msgstr "Raadi oo kala shaandhee dhammaan koorsooyinka la daabacay."
+
+#: templates/courses/catalog.html
+msgid "Search by title"
+msgstr "Ku raadi cinwaanka"
+
+#: templates/instructor/lesson_form.html
+msgid "Section"
+msgstr "Qayb"
+
+#: courses/views.py
+msgid "Section added."
+msgstr "Qaybta waa lagu daray."
+
+#: courses/views.py
+msgid "Section deleted."
+msgstr "Qaybta waa la tirtiray."
+
+#: courses/views.py
+msgid "Section renamed."
+msgstr "Magaca qaybta waa la beddelay."
+
+#: templates/instructor/lessons.html
+msgid "Section title"
+msgstr "Cinwaanka qaybta"
+
+#: courses/forms.py
+msgid "Section: %(title)s"
+msgstr "Qayb: %(title)s"
+
+#: templates/instructor/course_detail.html
+msgid "Sections"
+msgstr "Qaybo"
+
+#: templates/courses/catalog.html
+msgid "Show all courses"
+msgstr "Muuji dhammaan koorsooyinka"
+
+#: templates/accounts/login.html
+msgid "Show password"
+msgstr "Muuji furaha sirta ah"
+
+#: templates/accounts/register.html
+msgid "Show passwords"
+msgstr "Muuji furayaasha sirta ah"
+
+#: templates/accounts/profile.html
+msgid "Signed in as"
+msgstr "Waxaad ku gashay"
+
+#: courses/models.py
+msgid "Somali"
+msgstr "Soomaali"
+
+#: templates/student/my_courses.html
+msgid "Start"
+msgstr "Bilow"
+
+#: templates/instructor/students.html
+msgid "Student"
+msgstr "Arday"
+
+#: templates/courses/detail.html
+msgid "Students"
+msgstr "Arday"
+
+#: templates/instructor/course_detail.html
+msgid "Students cannot see this course yet."
+msgstr "Ardaydu weli ma arki karaan koorsadan."
+
+#: templates/instructor/students.html
+msgid "Students enrolled in your courses."
+msgstr "Ardayda ku diiwaangashan koorsooyinkaaga."
+
+#: templates/home.html
+msgid "Teach on E-Learning"
+msgstr "Wax ka dhig E-Learning"
+
+#: templates/courses/detail.html
+msgid "The content of this course is being prepared."
+msgstr "Nuxurka koorsadan waa la diyaarinayaa."
+
+#: courses/models.py
+msgid "The content of this file does not match its type, so it was not accepted."
+msgstr "Nuxurka faylkan kuma habboona noociisa, sidaas darteed lama aqbalin."
+
+#: templates/home.html
+msgid "The courses our students choose most."
+msgstr "Koorsooyinka ay ardaydeennu ugu badan doortaan."
+
+#: templates/student/my_courses.html
+msgid "The courses you are enrolled in."
+msgstr "Koorsooyinka aad ku diiwaangashan tahay."
+
+#: courses/models.py
+msgid "The file is too large. The maximum size is %(size)s MB."
+msgstr "Faylku aad buu u weyn yahay. Cabbirka ugu badan waa %(size)s MB."
+
+#: courses/models.py
+msgid "The image is too large. The maximum size is %(size)s MB."
+msgstr "Sawirku aad buu u weyn yahay. Cabbirka ugu badan waa %(size)s MB."
+
+#: templates/home.html
+msgid "The newest courses on the platform."
+msgstr "Koorsooyinka ugu cusub ee madasha."
+
+#: accounts/forms.py
+msgid "The two passwords do not match."
+msgstr "Labada fure ee sirta ah isma laha."
+
+#: templates/instructor/lessons.html
+msgid "The whole course"
+msgstr "Koorsada oo dhan"
+
+#: learning/views.py
+msgid "This course has no lessons yet."
+msgstr "Koorsadani weli casharro ma leh."
+
+#: templates/instructor/lessons.html
+msgid "This course has no sections yet. Add the first section below."
+msgstr "Koorsadani weli qaybo ma leh. Hoos ka ku dar qaybta koowaad."
+
+#: learning/views.py
+msgid "This course is not free. Online payment is not available yet."
+msgstr "Koorsadani bilaash ma aha. Lacag-bixinta online-ka ah weli lama heli karo."
+
+#: templates/student/lesson_player.html
+msgid "This is a free preview. Enroll in the course to open every lesson and its materials."
+msgstr "Kani waa hordhac bilaash ah. Isku diiwaangeli koorsada si aad u furto cashar kasta iyo agabkiisa."
+
+#: templates/student/lesson_player.html
+msgid "This lesson has no video or notes yet."
+msgstr "Casharkan weli ma laha muuqaal ama qoraallo."
+
+#: courses/views.py
+msgid "Thumbnail and objectives"
+msgstr "Sawirka iyo yoolalka"
+
+#: courses/forms.py
+msgid "Title"
+msgstr "Cinwaan"
+
+#: templates/instructor/lesson_form.html
+msgid "To attach a file to this lesson or its section, use"
+msgstr "Si aad fayl ugu lifaaqdo casharkan ama qaybtiisa, isticmaal"
+
+#: templates/includes/navbar.html
+msgid "Toggle navigation"
+msgstr "Fur ama xir liiska"
+
+#: templates/instructor/dashboard.html
+msgid "Total courses"
+msgstr "Wadarta koorsooyinka"
+
+#: templates/instructor/dashboard.html
+msgid "Total students"
+msgstr "Wadarta ardayda"
+
+#: templates/courses/catalog.html
+msgid "Try a different word or remove a filter."
+msgstr "Isku day eray kale ama ka saar shaandhayn."
+
+#: templates/instructor/course_detail.html
+msgid "Unpublish"
+msgstr "Ka noqo daabacaadda"
+
+#: templates/instructor/lessons.html
+msgid "Upload"
+msgstr "Soo geli"
+
+#: courses/models.py
+msgid "Upload a JPG, PNG or WebP image."
+msgstr "Soo geli sawir JPG, PNG ama WebP ah."
+
+#: templates/instructor/lessons.html
+msgid "Upload a material"
+msgstr "Soo geli agab"
+
+#: templates/instructor/lessons.html
+msgid "Upload new file"
+msgstr "Soo geli fayl cusub"
+
+#: templates/accounts/register.html
+msgid "Use your email address, your phone number, or both."
+msgstr "Isticmaal iimaylkaaga, lambarka taleefankaaga, ama labadaba."
+
+#: templates/instructor/lessons.html
+msgid "Video"
+msgstr "Muuqaal"
+
+#: templates/instructor/lessons.html
+msgid "View"
+msgstr "Eeg"
+
+#: templates/instructor/dashboard.html
+msgid "View all"
+msgstr "Eeg dhammaan"
+
+#: templates/home.html
+msgid "View all courses"
+msgstr "Eeg dhammaan koorsooyinka"
+
+#: templates/includes/course_card.html
+msgid "View course"
+msgstr "Eeg koorsada"
+
+#: templates/courses/detail.html
+msgid "Website"
+msgstr "Bogga internetka"
+
+#: templates/instructor/dashboard.html
+msgid "Welcome back"
+msgstr "Ku soo dhowow mar kale"
+
+#: courses/models.py
+msgid "What is this course about, and who is it for?"
+msgstr "Koorsadani maxay ku saabsan tahay, yaase loogu talagalay?"
+
+#: courses/models.py
+msgid "What will students learn? Write one objective per line."
+msgstr "Maxay ardaydu baran doonaan? Sadar kasta ku qor hal yool."
+
+#: templates/courses/detail.html
+msgid "What you will learn"
+msgstr "Waxa aad baran doonto"
+
+#: courses/models.py
+msgid "Written notes students can read with this lesson."
+msgstr "Qoraallo ay ardaydu ku akhrisan karaan casharkan."
+
+#: templates/instructor/base.html
+msgid "Yes, delete"
+msgstr "Haa, tirtir"
+
+#: templates/courses/detail.html
+msgid "You are enrolled in this course."
+msgstr "Waad ku diiwaangashan tahay koorsadan."
+
+#: learning/views.py
+msgid "You are enrolled. Enjoy the course!"
+msgstr "Waad isdiiwaangelisay. Ku raaxayso koorsada!"
+
+#: templates/student/dashboard.html
+msgid "You are not enrolled in any course yet."
+msgstr "Weli koorso kuma diiwaangashanid."
+
+#: accounts/views.py
+msgid "You have been logged out."
+msgstr "Waad ka baxday."
+
+#: templates/instructor/courses.html
+msgid "You have no courses yet."
+msgstr "Weli koorso ma lihid."
+
+#: templates/courses/detail.html
+msgid "You teach this course."
+msgstr "Adiga ayaa dhiga koorsadan."
+
+#: courses/models.py
+msgid "YouTube video link"
+msgstr "xiriiriyaha muuqaalka YouTube"
+
+#: accounts/views.py
+msgid "Your account has been created. Welcome!"
+msgstr "Akoonkaaga waa la sameeyay. Soo dhowow!"
+
+#: templates/instructor/course_form.html
+msgid "Your course is saved as a draft. You can add lessons and publish it later."
+msgstr "Koorsadaada waxaa loo kaydiyay qabyo ahaan. Waxaad ku dari kartaa casharro, kaddibna waad daabici kartaa."
+
+#: accounts/views.py
+msgid "Your password has been changed."
+msgstr "Furahaaga sirta ah waa la beddelay."
+
+#: templates/accounts/profile.html
+msgid "Your personal details and password."
+msgstr "Xogtaada gaarka ah iyo furahaaga sirta ah."
+
+#: accounts/views.py
+msgid "Your profile has been saved."
+msgstr "Xogtaada waa la kaydiyay."
+
+#: templates/accounts/profile.html
+msgid "Your teaching profile. Students will see it with your courses."
+msgstr "Xogtaada macallinnimo. Ardaydu waxay kula arki doonaan koorsooyinkaaga."
+
+#: accounts/models.py
+msgid "biography"
+msgstr "taariikh nololeed"
+
+#: courses/models.py
+msgid "course language"
+msgstr "luqadda koorsada"
+
+#: courses/models.py
+msgid "course thumbnail"
+msgstr "sawirka koorsada"
+
+#: courses/models.py
+msgid "free preview"
+msgstr "hordhac bilaash ah"
+
+#: courses/models.py
+msgid "lesson notes"
+msgstr "qoraallada casharka"
+
+#: templates/student/dashboard.html
+msgid "lessons"
+msgstr "cashar"
+
+#: templates/includes/form_fields.html
+msgid "optional"
+msgstr "ikhtiyaari"
+
+#: accounts/models.py
+msgid "portfolio or website"
+msgstr "bogga shaqooyinka ama websaydh"
+
+#: accounts/models.py
+msgid "professional title"
+msgstr "cinwaanka xirfadeed"
+
+#: courses/forms.py
+msgid "— Lesson: %(title)s"
+msgstr "— Cashar: %(title)s"
+
+# ---------- Texts that come from Django itself (form labels and validation messages) ----------
+
+#: django
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr "%(model_name)s leh %(field_label)s kan hore ayuu u jiray."
+
+#: django
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr "Hubi in qiimahani ka weyn yahay ama la mid yahay %(limit_value)s."
+
+#: django
+msgid "Enter a number."
+msgstr "Geli tiro."
+
+#: django
+msgid "Enter a valid URL."
+msgstr "Geli URL sax ah."
+
+#: django
+msgid "Enter a valid email address."
+msgstr "Geli cinwaan iimayl oo sax ah."
+
+#: django
+msgid "Enter the same password as before, for verification."
+msgstr "Geli isla furihii hore si loo xaqiijiyo."
+
+#: django
+msgid "File extension “%(extension)s” is not allowed. Allowed extensions are: %(allowed_extensions)s."
+msgstr "Nooca faylka “%(extension)s” lama oggola. Noocyada la oggol yahay waa: %(allowed_extensions)s."
+
+#: django
+msgid "New password"
+msgstr "Furaha cusub ee sirta ah"
+
+#: django
+msgid "New password confirmation"
+msgstr "Xaqiijinta furaha cusub"
+
+#: django
+msgid "Old password"
+msgstr "Furihii hore ee sirta ah"
+
+#: django
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr "Dooro xulasho sax ah. Xulashadaasi kuma jirto kuwa la heli karo."
+
+#: django
+msgid "The password is too similar to the %(verbose_name)s."
+msgstr "Furuhu aad buu ugu eg yahay %(verbose_name)s."
+
+#: django
+msgid "The two password fields didn’t match."
+msgstr "Labada meelood ee furaha sirta ah isma laha."
+
+#: django
+msgid "This field is required."
+msgstr "Meeshan waa in la buuxiyaa."
+
+#: django
+msgid "This password is entirely numeric."
+msgstr "Furahan waa tirooyin oo keliya."
+
+#: django
+msgid "This password is too common."
+msgstr "Furahan aad baa loo isticmaalaa."
+
+#: django
+msgid "Upload a valid image. The file you uploaded was either not an image or a corrupted image."
+msgstr "Soo geli sawir sax ah. Faylka aad soo gelisay sawir ma aha ama wuu kharribmay."
+
+#: django
+msgid "Your old password was entered incorrectly. Please enter it again."
+msgstr "Furahaagii hore si khaldan ayaa loo geliyay. Fadlan mar kale geli."
+
+#: django
+msgid "Your password can’t be a commonly used password."
+msgstr "Furahaagu waa inuusan noqon mid aad loo isticmaalo."
+
+#: django
+msgid "Your password can’t be entirely numeric."
+msgstr "Furahaagu waa inuusan noqon tirooyin oo keliya."
+
+#: django
+msgid "Your password can’t be too similar to your other personal information."
+msgstr "Furahaagu waa inuusan aad ugu ekaan xogtaada kale ee gaarka ah."
+
+#: django
+msgid "first name"
+msgstr "magaca koowaad"
+
+#: django
+msgid "last name"
+msgstr "magaca dambe"
+
+#: django
+msgid "This password is too short. It must contain at least %(min_length)d character."
+msgid_plural "This password is too short. It must contain at least %(min_length)d characters."
+msgstr[0] "Furahan aad buu u gaaban yahay. Waa inuu ka koobnaadaa ugu yaraan %(min_length)d xaraf."
+msgstr[1] "Furahan aad buu u gaaban yahay. Waa inuu ka koobnaadaa ugu yaraan %(min_length)d xaraf."
+
+#: django
+msgid "Your password must contain at least %(min_length)d character."
+msgid_plural "Your password must contain at least %(min_length)d characters."
+msgstr[0] "Furahaagu waa inuu ka koobnaadaa ugu yaraan %(min_length)d xaraf."
+msgstr[1] "Furahaagu waa inuu ka koobnaadaa ugu yaraan %(min_length)d xaraf."

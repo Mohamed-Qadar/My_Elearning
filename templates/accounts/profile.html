@@ -1,0 +1,48 @@
+{% extends base_template %}
+{% load i18n %}
+
+{# Used by every signed-in user. The view chooses the instructor or the student layout. #}
+{% block title %}{% translate "My profile" %} | E-Learning{% endblock %}
+
+{% block page_content %}
+<h1 class="h3 mb-1">{% translate "My profile" %}</h1>
+<p class="text-muted mb-4">
+    {% if user.role == "instructor" %}
+    {% translate "Your teaching profile. Students will see it with your courses." %}
+    {% else %}
+    {% translate "Your personal details and password." %}
+    {% endif %}
+</p>
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="card-body p-4">
+        <div class="d-flex align-items-center gap-3 pb-3 mb-4 border-bottom">
+            <span class="avatar">{{ user.display_name|first|upper }}</span>
+            <div>
+                <div class="fw-semibold">{{ user.display_name }}</div>
+                <div class="text-muted small text-break">{% translate "Signed in as" %} {{ user }} · {{ user.get_role_display }}</div>
+            </div>
+        </div>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% include "includes/form_fields.html" %}
+            <div class="d-flex flex-wrap gap-2">
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg" aria-hidden="true"></i> {% translate "Save profile" %}</button>
+                <a class="btn btn-outline-secondary" href="{% if user.role == 'instructor' %}{% url 'courses:dashboard' %}{% else %}{% url 'learning:dashboard' %}{% endif %}">{% translate "Cancel" %}</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm" id="password">
+    <div class="card-body p-4">
+        <h2 class="h5 mb-3"><i class="bi bi-shield-lock" aria-hidden="true"></i> {% translate "Change password" %}</h2>
+        <form method="post" action="#password" novalidate>
+            {% csrf_token %}
+            {% include "includes/form_fields.html" with form=password_form %}
+            <button type="submit" name="change_password" value="1" class="btn btn-primary">{% translate "Change password" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

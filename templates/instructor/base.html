@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{# Shared layout of every instructor page: a sidebar on large screens, a bottom bar on phones and tablets. #}
+{% block body_class %}dashboard-page{% endblock %}
+
+{% block content %}
+{% with page=request.resolver_match.url_name course_pages="course_list course_detail course_edit course_content lesson_create lesson_edit" %}
+<div class="row g-4">
+    <aside class="col-lg-3 d-none d-lg-block">
+        <div class="card border-0 shadow-sm instructor-sidebar">
+            <div class="card-body">
+                <div class="d-flex align-items-center gap-3 pb-3 mb-3 border-bottom">
+                    <span class="avatar">{{ user.display_name|first|upper }}</span>
+                    <div class="text-truncate">
+                        <div class="fw-semibold text-truncate">{{ user.display_name }}</div>
+                        <div class="text-muted small text-truncate">{% if user.headline %}{{ user.headline }}{% else %}{% translate "Instructor account" %}{% endif %}</div>
+                    </div>
+                </div>
+
+                <nav class="d-grid gap-1" aria-label="{% translate 'Instructor' %}">
+                    <a class="side-link {% if page == 'dashboard' %}active{% endif %}" href="{% url 'courses:dashboard' %}">
+                        <i class="bi bi-speedometer2" aria-hidden="true"></i> {% translate "Overview" %}
+                    </a>
+                    <a class="side-link {% if page in course_pages %}active{% endif %}" href="{% url 'courses:course_list' %}">
+                        <i class="bi bi-collection-play" aria-hidden="true"></i> {% translate "My courses" %}
+                    </a>
+                    <a class="side-link {% if page == 'course_create' %}active{% endif %}" href="{% url 'courses:course_create' %}">
+                        <i class="bi bi-plus-circle" aria-hidden="true"></i> {% translate "Create a course" %}
+                    </a>
+                    <a class="side-link {% if page == 'students' %}active{% endif %}" href="{% url 'courses:students' %}">
+                        <i class="bi bi-people" aria-hidden="true"></i> {% translate "Students" %}
+                    </a>
+                    <a class="side-link {% if page == 'profile' %}active{% endif %}" href="{% url 'accounts:profile' %}">
+                        <i class="bi bi-person-circle" aria-hidden="true"></i> {% translate "My profile" %}
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </aside>
+
+    <section class="col-lg-9">
+        {% block page_content %}{% endblock %}
+    </section>
+</div>
+
+{# Phones and tablets: the same five pages, always one tap away. #}
+<nav class="bottom-nav d-lg-none" aria-label="{% translate 'Instructor' %}">
+    <a class="{% if page == 'dashboard' %}active{% endif %}" href="{% url 'courses:dashboard' %}">
+        <i class="bi bi-speedometer2" aria-hidden="true"></i><span>{% translate "Overview" %}</span>
+    </a>
+    <a class="{% if page in course_pages %}active{% endif %}" href="{% url 'courses:course_list' %}">
+        <i class="bi bi-collection-play" aria-hidden="true"></i><span>{% translate "Courses" %}</span>
+    </a>
+    <a class="{% if page == 'course_create' %}active{% endif %}" href="{% url 'courses:course_create' %}">
+        <i class="bi bi-plus-circle" aria-hidden="true"></i><span>{% translate "Create" %}</span>
+    </a>
+    <a class="{% if page == 'students' %}active{% endif %}" href="{% url 'courses:students' %}">
+        <i class="bi bi-people" aria-hidden="true"></i><span>{% translate "Students" %}</span>
+    </a>
+    <a class="{% if page == 'profile' %}active{% endif %}" href="{% url 'accounts:profile' %}">
+        <i class="bi bi-person-circle" aria-hidden="true"></i><span>{% translate "Profile" %}</span>
+    </a>
+</nav>
+{% endwith %}
+
+{# One confirmation dialog for every form marked with data-confirm (see app.js). #}
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title h5" id="confirmModalTitle">{% translate "Please confirm" %}</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% translate 'Close' %}"></button>
+            </div>
+            <div class="modal-body" id="confirmModalMessage"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">{% translate "Cancel" %}</button>
+                <button type="button" class="btn btn-danger" id="confirmModalButton">{% translate "Yes, delete" %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

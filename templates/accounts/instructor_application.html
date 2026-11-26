@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}Become an instructor | E-Learning{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-7">
+        <h1 class="h3 mb-3">Become an instructor</h1>
+
+        {% if application %}
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <h2 class="h5">
+                    Your application
+                    {% if application.status == "pending" %}
+                    <span class="badge bg-warning text-dark">Pending</span>
+                    {% elif application.status == "approved" %}
+                    <span class="badge bg-success">Approved</span>
+                    {% else %}
+                    <span class="badge bg-danger">Rejected</span>
+                    {% endif %}
+                </h2>
+                <p class="text-muted small mb-2">Submitted on {{ application.submitted_at|date:"j F Y" }}</p>
+
+                {% if application.status == "pending" %}
+                <p class="mb-0">Your application is waiting for review. You will see the decision on this page.</p>
+                {% elif application.status == "approved" %}
+                <p class="mb-0">Your application was approved. You are now an instructor.</p>
+                {% else %}
+                <p class="mb-0">Your application was not approved.{% if form %} You may apply again below.{% endif %}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if form %}
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <p class="text-muted">Tell us about yourself. An administrator will review your application.</p>
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+
+                    {% for field in form %}
+                    <div class="mb-3">
+                        <label class="form-label" for="{{ field.id_for_label }}">
+                            {{ field.label|capfirst }}
+                            {% if not field.field.required %}<span class="text-muted small">(optional)</span>{% endif %}
+                        </label>
+                        {{ field }}
+                        {% for error in field.errors %}
+                        <div class="text-danger small mt-1">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+
+                    <button type="submit" class="btn btn-primary">Submit application</button>
+                </form>
+            </div>
+        </div>
+        {% elif not application %}
+        <div class="alert alert-info">Instructor applications are open to student accounts only.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

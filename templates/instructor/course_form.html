@@ -1,0 +1,52 @@
+{% extends "instructor/base.html" %}
+{% load i18n %}
+
+{% block title %}{% if course %}{% translate "Edit course details" %}{% else %}{% translate "Create a course" %}{% endif %} | E-Learning{% endblock %}
+
+{% block page_content %}
+<a class="text-decoration-none small" href="{% if course %}{% url 'courses:course_detail' course.pk %}{% else %}{% url 'courses:course_list' %}{% endif %}">
+    <i class="bi bi-arrow-left" aria-hidden="true"></i> {% if course %}{% translate "Back to course" %}{% else %}{% translate "Back to my courses" %}{% endif %}
+</a>
+<h1 class="h3 mt-2 mb-1">{% if course %}{% translate "Edit course details" %}{% else %}{% translate "Create a course" %}{% endif %}</h1>
+<p class="text-muted mb-4">
+    {% if course %}
+    {% translate "Saving does not change whether the course is published." %}
+    {% else %}
+    {% translate "Your course is saved as a draft. You can add lessons and publish it later." %}
+    {% endif %}
+</p>
+
+<form method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {% if form.errors %}
+    <div class="alert alert-danger d-flex gap-2" role="alert">
+        <i class="bi bi-exclamation-octagon-fill" aria-hidden="true"></i>
+        <div>{% translate "Please correct the fields marked below." %}</div>
+    </div>
+    {% endif %}
+
+    {% for heading, fields, two_columns in field_groups %}
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+            <h2 class="h5 mb-3">{{ heading }}</h2>
+            {% if forloop.last and course.thumbnail %}
+            <div class="mb-3">
+                <div class="form-label">{% translate "Current thumbnail" %}</div>
+                <img class="course-thumb rounded" style="max-width: 320px" src="{{ course.thumbnail.url }}" alt="">
+            </div>
+            {% endif %}
+            <div class="{% if two_columns %}form-grid{% endif %}">
+                {% include "includes/form_fields.html" with form=fields %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="d-flex flex-wrap gap-2">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-check-lg" aria-hidden="true"></i> {% if course %}{% translate "Save changes" %}{% else %}{% translate "Save as draft" %}{% endif %}
+        </button>
+        <a class="btn btn-outline-secondary" href="{% if course %}{% url 'courses:course_detail' course.pk %}{% else %}{% url 'courses:course_list' %}{% endif %}">{% translate "Cancel" %}</a>
+    </div>
+</form>
+{% endblock %}

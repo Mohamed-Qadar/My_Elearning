@@ -1,0 +1,217 @@
+{% extends "instructor/base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Course content" %} | E-Learning{% endblock %}
+
+{% block page_content %}
+<a class="text-decoration-none small" href="{% url 'courses:course_detail' course.pk %}">
+    <i class="bi bi-arrow-left" aria-hidden="true"></i> {% translate "Back to course" %}
+</a>
+<h1 class="h3 mt-2 mb-1">{% translate "Course content" %}</h1>
+<p class="text-muted mb-4">
+    {{ course.title }} · {% translate "A course is made of sections, and each section holds lessons. Use the arrows to change the order." %}
+</p>
+
+{% for section in sections %}
+<div class="card border-0 shadow-sm mb-3">
+    <div class="card-header bg-white d-flex flex-wrap align-items-center gap-2 py-3">
+        <span class="section-number">{{ forloop.counter }}</span>
+        <div class="me-auto">
+            <div class="fw-semibold">{{ section.title }}</div>
+            <div class="text-muted small">{% translate "Lessons" %}: {{ section.lessons.all|length }}</div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+        <form method="post" action="{% url 'courses:section_move' section.pk %}" class="btn-group">
+            {% csrf_token %}
+            <button type="submit" name="direction" value="up" class="btn btn-sm btn-outline-secondary"
+                    aria-label="{% translate 'Move section up' %}" title="{% translate 'Move up' %}" {% if forloop.first %}disabled{% endif %}>
+                <i class="bi bi-arrow-up" aria-hidden="true"></i>
+            </button>
+            <button type="submit" name="direction" value="down" class="btn btn-sm btn-outline-secondary"
+                    aria-label="{% translate 'Move section down' %}" title="{% translate 'Move down' %}" {% if forloop.last %}disabled{% endif %}>
+                <i class="bi bi-arrow-down" aria-hidden="true"></i>
+            </button>
+        </form>
+        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse"
+                data-bs-target="#rename-section-{{ section.pk }}" aria-expanded="false">
+            <i class="bi bi-pencil" aria-hidden="true"></i> {% translate "Rename" %}
+        </button>
+        <form method="post" action="{% url 'courses:section_delete' section.pk %}"
+              data-confirm="{% blocktranslate with title=section.title %}Delete the section “{{ title }}” with all of its lessons and materials?{% endblocktranslate %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-danger" aria-label="{% translate 'Delete section' %}" title="{% translate 'Delete section' %}">
+                <i class="bi bi-trash" aria-hidden="true"></i>
+            </button>
+        </form>
+        </div>
+    </div>
+
+    <div class="collapse" id="rename-section-{{ section.pk }}">
+        <form method="post" action="{% url 'courses:section_edit' section.pk %}" class="d-flex gap-2 p-3 border-bottom bg-light">
+            {% csrf_token %}
+            <input type="text" name="title" value="{{ section.title }}" maxlength="200" required
+                   class="form-control" aria-label="{% translate 'New section title' %}">
+            <button type="submit" class="btn btn-primary text-nowrap">{% translate "Save name" %}</button>
+        </form>
+    </div>
+
+    <div class="list-group list-group-flush">
+        {% for lesson in section.lessons.all %}
+        <div class="list-group-item content-row d-flex flex-wrap align-items-center gap-2 py-3">
+            <div class="d-flex align-items-start gap-2 me-auto">
+                {% if lesson.youtube_url %}
+                <i class="bi bi-play-circle-fill text-primary" aria-hidden="true"></i>
+                {% else %}
+                <i class="bi bi-file-earmark-text text-muted" aria-hidden="true"></i>
+                {% endif %}
+                <div>
+                    <span class="fw-medium">{{ forloop.counter }}. {{ lesson.title }}</span>
+                    {% if lesson.is_free_preview %}<span class="badge rounded-pill text-bg-info">{% translate "Free preview" %}</span>{% endif %}
+                    {% if lesson.youtube_url %}<span class="badge rounded-pill text-bg-light border">{% translate "Video" %}</span>{% endif %}
+                    {% if lesson.notes %}<span class="badge rounded-pill text-bg-light border">{% translate "Notes" %}</span>{% endif %}
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+            <form method="post" action="{% url 'courses:lesson_move' lesson.pk %}" class="btn-group">
+                {% csrf_token %}
+                <button type="submit" name="direction" value="up" class="btn btn-sm btn-outline-secondary"
+                        aria-label="{% translate 'Move lesson up' %}" title="{% translate 'Move up' %}" {% if forloop.first %}disabled{% endif %}>
+                    <i class="bi bi-arrow-up" aria-hidden="true"></i>
+                </button>
+                <button type="submit" name="direction" value="down" class="btn btn-sm btn-outline-secondary"
+                        aria-label="{% translate 'Move lesson down' %}" title="{% translate 'Move down' %}" {% if forloop.last %}disabled{% endif %}>
+                    <i class="bi bi-arrow-down" aria-hidden="true"></i>
+                </button>
+            </form>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'courses:lesson_edit' lesson.pk %}">
+                <i class="bi bi-pencil" aria-hidden="true"></i> {% translate "Edit" %}
+            </a>
+            <form method="post" action="{% url 'courses:lesson_delete' lesson.pk %}"
+                  data-confirm="{% blocktranslate with title=lesson.title %}Delete the lesson “{{ title }}” and its materials?{% endblocktranslate %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-outline-danger" aria-label="{% translate 'Delete lesson' %}" title="{% translate 'Delete lesson' %}">
+                    <i class="bi bi-trash" aria-hidden="true"></i>
+                </button>
+            </form>
+            </div>
+        </div>
+        {% empty %}
+        <div class="list-group-item text-muted py-3">{% translate "No lessons in this section yet." %}</div>
+        {% endfor %}
+    </div>
+
+    <div class="card-body">
+        <a class="btn btn-sm btn-primary" href="{% url 'courses:lesson_create' section.pk %}">
+            <i class="bi bi-plus-lg" aria-hidden="true"></i> {% translate "Add a lesson" %}
+        </a>
+    </div>
+</div>
+{% empty %}
+<div class="alert alert-info d-flex gap-2" role="alert">
+    <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+    <div>{% translate "This course has no sections yet. Add the first section below." %}</div>
+</div>
+{% endfor %}
+
+<div class="card border-0 shadow-sm mb-5">
+    <div class="card-body p-4">
+        <h2 class="h5">{% translate "Add a section" %}</h2>
+        <form method="post" class="d-flex flex-wrap gap-2" novalidate>
+            {% csrf_token %}
+            <div class="flex-grow-1">
+                <input type="text" name="title" maxlength="200" class="form-control"
+                       placeholder="{% translate 'For example: Introduction' %}" aria-label="{% translate 'Section title' %}"
+                       value="{{ section_form.title.value|default:'' }}">
+                {% for error in section_form.title.errors %}
+                <div class="text-danger small mt-1">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-plus-lg" aria-hidden="true"></i> {% translate "Add section" %}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<h2 class="h4 mb-1" id="materials">{% translate "Notes and learning materials" %}</h2>
+<p class="text-muted mb-3">
+    {% translate "Files for your students. Only you and students enrolled in this course can open them. Written notes are added inside each lesson." %}
+</p>
+
+<div class="card border-0 shadow-sm mb-4">
+    <div class="list-group list-group-flush">
+        {% for material in materials %}
+        <div class="list-group-item py-3">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+                {% if material.extension == "pdf" %}
+                <i class="file-icon bi bi-file-earmark-pdf text-danger" aria-hidden="true"></i>
+                {% elif material.extension == "docx" or material.extension == "doc" %}
+                <i class="file-icon bi bi-file-earmark-word text-primary" aria-hidden="true"></i>
+                {% elif material.extension == "pptx" or material.extension == "ppt" %}
+                <i class="file-icon bi bi-file-earmark-ppt text-warning" aria-hidden="true"></i>
+                {% elif material.extension == "xlsx" or material.extension == "xls" %}
+                <i class="file-icon bi bi-file-earmark-excel text-success" aria-hidden="true"></i>
+                {% else %}
+                <i class="file-icon bi bi-file-earmark-text text-secondary" aria-hidden="true"></i>
+                {% endif %}
+                <div class="me-auto">
+                    <div class="fw-semibold">{{ material.title }}</div>
+                    <div class="text-muted small text-break">
+                        {{ material.filename }} ·
+                        {% if material.lesson %}{% translate "Lesson" %}: {{ material.lesson.title }}{% elif material.section %}{% translate "Section" %}: {{ material.section.title }}{% else %}{% translate "The whole course" %}{% endif %}
+                    </div>
+                </div>
+
+                <div class="d-flex flex-wrap gap-2">
+                    {% if material.can_be_viewed %}
+                    <a class="btn btn-sm btn-outline-primary" href="{% url 'courses:material_download' material.pk %}?view=1"
+                       target="_blank" rel="noopener"><i class="bi bi-eye" aria-hidden="true"></i> {% translate "View" %}</a>
+                    {% endif %}
+                    <a class="btn btn-sm btn-outline-primary" href="{% url 'courses:material_download' material.pk %}">
+                        <i class="bi bi-download" aria-hidden="true"></i> {% translate "Download" %}
+                    </a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse"
+                            data-bs-target="#replace-material-{{ material.pk }}" aria-expanded="false">
+                        <i class="bi bi-arrow-repeat" aria-hidden="true"></i> {% translate "Replace" %}
+                    </button>
+                    <form method="post" action="{% url 'courses:material_delete' material.pk %}"
+                          data-confirm="{% blocktranslate with title=material.title %}Delete the material “{{ title }}”?{% endblocktranslate %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-danger" aria-label="{% translate 'Delete material' %}" title="{% translate 'Delete material' %}">
+                            <i class="bi bi-trash" aria-hidden="true"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="collapse" id="replace-material-{{ material.pk }}">
+                <form method="post" action="{% url 'courses:material_replace' material.pk %}" enctype="multipart/form-data"
+                      class="d-flex flex-wrap gap-2 pt-3">
+                    {% csrf_token %}
+                    <input type="file" name="file" required class="form-control w-auto flex-grow-1"
+                           accept="{{ material_form.file.field.widget.attrs.accept }}" aria-label="{% translate 'New file' %}">
+                    <button type="submit" class="btn btn-primary">{% translate "Upload new file" %}</button>
+                </form>
+            </div>
+        </div>
+        {% empty %}
+        <div class="list-group-item text-center text-muted py-4">
+            <i class="bi bi-paperclip fs-2" aria-hidden="true"></i>
+            <div>{% translate "No materials uploaded yet." %}</div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-4">
+        <h3 class="h5 mb-3"><i class="bi bi-cloud-arrow-up" aria-hidden="true"></i> {% translate "Upload a material" %}</h3>
+        <form method="post" action="{% url 'courses:material_upload' course.pk %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include "includes/form_fields.html" with form=material_form %}
+            <button type="submit" class="btn btn-primary"><i class="bi bi-upload" aria-hidden="true"></i> {% translate "Upload" %}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Create an account" %} | E-Learning{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-1">{% translate "Create your account" %}</h1>
+                <p class="text-muted">{% translate "Use your email address, your phone number, or both." %}</p>
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    {% include "includes/form_fields.html" %}
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="showPasswords" data-show-passwords>
+                        <label class="form-check-label" for="showPasswords">{% translate "Show passwords" %}</label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">{% translate "Create account" %}</button>
+                </form>
+
+                <p class="text-center mt-3 mb-0">
+                    {% translate "Already have an account?" %} <a href="{% url 'accounts:login' %}">{% translate "Log in" %}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% translate "Courses" %} | E-Learning{% endblock %}
+
+{% block content %}
+<h1 class="h2 mb-1">{% translate "Courses" %}</h1>
+<p class="text-muted mb-4">{% translate "Search and filter all published courses." %}</p>
+
+<form method="get" class="card border-0 shadow-sm mb-4">
+    <div class="card-body">
+        <div class="row g-3 align-items-end">
+            <div class="col-lg-4">
+                <label class="form-label" for="search">{% translate "Search by title" %}</label>
+                <input type="search" class="form-control" id="search" name="q" value="{{ search }}"
+                       placeholder="{% translate 'For example: Mathematics' %}">
+            </div>
+            <div class="col-sm-4 col-lg-2">
+                <label class="form-label" for="category">{% translate "Category" %}</label>
+                <select class="form-select" id="category" name="category">
+                    <option value="">{% translate "All" %}</option>
+                    {% for category in categories %}
+                    <option value="{{ category.pk }}" {% if selected_category == category.pk|stringformat:"s" %}selected{% endif %}>{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-4 col-lg-2">
+                <label class="form-label" for="language">{% translate "Language" %}</label>
+                <select class="form-select" id="language" name="language">
+                    <option value="">{% translate "All" %}</option>
+                    {% for value, label in languages %}
+                    <option value="{{ value }}" {% if selected_language == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-4 col-lg-2">
+                <label class="form-label" for="level">{% translate "Level" %}</label>
+                <select class="form-select" id="level" name="level">
+                    <option value="">{% translate "All" %}</option>
+                    {% for value, label in levels %}
+                    <option value="{{ value }}" {% if selected_level == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-lg-2 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1">
+                    <i class="bi bi-search" aria-hidden="true"></i> {% translate "Search" %}
+                </button>
+                {% if is_filtered %}
+                <a class="btn btn-outline-secondary" href="{% url 'courses:catalog' %}" aria-label="{% translate 'Clear filters' %}" title="{% translate 'Clear filters' %}">
+                    <i class="bi bi-x-lg" aria-hidden="true"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</form>
+
+<p class="text-muted small">{% translate "Courses found" %}: {{ page.paginator.count }}</p>
+
+{% if page.object_list %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for course in page %}
+    <div class="col">{% include "includes/course_card.html" %}</div>
+    {% endfor %}
+</div>
+
+{% if page.has_other_pages %}
+<nav class="mt-4" aria-label="{% translate 'Pages' %}">
+    <ul class="pagination justify-content-center flex-wrap">
+        {% if page.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?{% if filter_query %}{{ filter_query }}&amp;{% endif %}page={{ page.previous_page_number }}">{% translate "Previous" %}</a>
+        </li>
+        {% endif %}
+        {% for number in page.paginator.page_range %}
+        <li class="page-item {% if number == page.number %}active{% endif %}">
+            <a class="page-link" href="?{% if filter_query %}{{ filter_query }}&amp;{% endif %}page={{ number }}">{{ number }}</a>
+        </li>
+        {% endfor %}
+        {% if page.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?{% if filter_query %}{{ filter_query }}&amp;{% endif %}page={{ page.next_page_number }}">{% translate "Next" %}</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% else %}
+<div class="card border-0 shadow-sm">
+    <div class="card-body text-center py-5">
+        <i class="bi bi-search fs-1 text-muted" aria-hidden="true"></i>
+        <h2 class="h5 mt-3">{% translate "No courses match your search" %}</h2>
+        <p class="text-muted mb-3">{% translate "Try a different word or remove a filter." %}</p>
+        {% if is_filtered %}
+        <a class="btn btn-outline-primary" href="{% url 'courses:catalog' %}">{% translate "Show all courses" %}</a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

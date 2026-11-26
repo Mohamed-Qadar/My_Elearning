@@ -1,0 +1,9 @@
+{% load i18n %}
+{# The one place that prints the price of "course": Free, or the amount with the platform currency. #}
+{% if course.is_free %}
+<span class="fw-bold text-success">{% translate "Free" %}</span>
+{% else %}
+<span class="fw-bold">{{ course.price_display }}</span>
+<span class="text-muted small fw-normal">{{ course.currency_code }}</span>
+<span class="badge rounded-pill text-bg-warning fs-badge">{% translate "Paid" %}</span>
+{% endif %}

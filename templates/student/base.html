@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{# Shared layout of the student pages: a sidebar on large screens, a bottom bar on phones and tablets. #}
+{% block body_class %}dashboard-page{% endblock %}
+
+{% block content %}
+{% with page=request.resolver_match.url_name %}
+<div class="row g-4">
+    <aside class="col-lg-3 d-none d-lg-block">
+        <div class="card border-0 shadow-sm instructor-sidebar">
+            <div class="card-body">
+                <div class="d-flex align-items-center gap-3 pb-3 mb-3 border-bottom">
+                    <span class="avatar">{{ user.display_name|first|upper }}</span>
+                    <div class="text-truncate">
+                        <div class="fw-semibold text-truncate">{{ user.display_name }}</div>
+                        <div class="text-muted small text-truncate">{{ user }}</div>
+                    </div>
+                </div>
+
+                <nav class="d-grid gap-1" aria-label="{% translate 'My learning' %}">
+                    <a class="side-link {% if page == 'dashboard' %}active{% endif %}" href="{% url 'learning:dashboard' %}">
+                        <i class="bi bi-speedometer2" aria-hidden="true"></i> {% translate "Dashboard" %}
+                    </a>
+                    <a class="side-link {% if page == 'my_courses' %}active{% endif %}" href="{% url 'learning:my_courses' %}">
+                        <i class="bi bi-collection-play" aria-hidden="true"></i> {% translate "My courses" %}
+                    </a>
+                    <a class="side-link" href="{% url 'courses:catalog' %}">
+                        <i class="bi bi-search" aria-hidden="true"></i> {% translate "Browse courses" %}
+                    </a>
+                    <a class="side-link {% if page == 'profile' %}active{% endif %}" href="{% url 'accounts:profile' %}">
+                        <i class="bi bi-person-circle" aria-hidden="true"></i> {% translate "My profile" %}
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </aside>
+
+    <section class="col-lg-9">
+        {% block page_content %}{% endblock %}
+    </section>
+</div>
+
+<nav class="bottom-nav d-lg-none" aria-label="{% translate 'My learning' %}">
+    <a class="{% if page == 'dashboard' %}active{% endif %}" href="{% url 'learning:dashboard' %}">
+        <i class="bi bi-speedometer2" aria-hidden="true"></i><span>{% translate "Dashboard" %}</span>
+    </a>
+    <a class="{% if page == 'my_courses' %}active{% endif %}" href="{% url 'learning:my_courses' %}">
+        <i class="bi bi-collection-play" aria-hidden="true"></i><span>{% translate "My courses" %}</span>
+    </a>
+    <a href="{% url 'courses:catalog' %}">
+        <i class="bi bi-search" aria-hidden="true"></i><span>{% translate "Browse" %}</span>
+    </a>
+    <a class="{% if page == 'profile' %}active{% endif %}" href="{% url 'accounts:profile' %}">
+        <i class="bi bi-person-circle" aria-hidden="true"></i><span>{% translate "Profile" %}</span>
+    </a>
+</nav>
+{% endwith %}
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ course.title }} | E-Learning{% endblock %}
+
+{% block content %}
+<a class="text-decoration-none small" href="{% url 'courses:catalog' %}">
+    <i class="bi bi-arrow-left" aria-hidden="true"></i> {% translate "All courses" %}
+</a>
+
+<div class="row g-4 mt-1">
+    <div class="col-lg-8">
+        <div class="text-muted small mb-1">{{ course.category }}</div>
+        <h1 class="h2 mb-3">{{ course.title }}</h1>
+        <div class="d-flex flex-wrap gap-3 text-muted mb-4">
+            <span><i class="bi bi-person" aria-hidden="true"></i> {{ course.instructor.display_name }}</span>
+            <span><i class="bi bi-bar-chart" aria-hidden="true"></i> {{ course.get_level_display }}</span>
+            <span><i class="bi bi-translate" aria-hidden="true"></i> {{ course.get_language_display }}</span>
+            <span><i class="bi bi-play-circle" aria-hidden="true"></i> {% translate "Lessons" %}: {{ lesson_count }}</span>
+            <span><i class="bi bi-people" aria-hidden="true"></i> {% translate "Students" %}: {{ student_count }}</span>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <h2 class="h5">{% translate "About this course" %}</h2>
+                <p class="mb-0">{{ course.description|linebreaksbr }}</p>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+                <h2 class="h5">{% translate "What you will learn" %}</h2>
+                <ul class="list-unstyled row row-cols-1 row-cols-md-2 g-2 mb-0">
+                    {% for objective in course.learning_objectives.splitlines %}
+                    {% if objective.strip %}
+                    <li class="col d-flex gap-2">
+                        <i class="bi bi-check2-circle text-success" aria-hidden="true"></i><span>{{ objective }}</span>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="h5 mb-3">{% translate "Course content" %}</h2>
+        {# Titles only. Notes, files and video links are never printed on this page. #}
+        {% for section in sections %}
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-white d-flex align-items-center gap-2 py-3">
+                <span class="section-number">{{ forloop.counter }}</span>
+                <span class="fw-semibold">{{ section.title }}</span>
+            </div>
+            <div class="list-group list-group-flush">
+                {% for lesson in section.lessons.all %}
+                <div class="list-group-item d-flex flex-wrap align-items-center gap-2 py-3">
+                    {% if lesson.is_free_preview or is_enrolled or is_owner %}
+                    <i class="bi bi-play-circle text-primary" aria-hidden="true"></i>
+                    <a class="me-auto text-decoration-none" href="{% url 'learning:lesson' lesson.pk %}">{{ lesson.title }}</a>
+                    {% else %}
+                    <i class="bi bi-lock text-muted" aria-hidden="true"></i>
+                    <span class="me-auto">{{ lesson.title }}</span>
+                    {% endif %}
+                    {% if lesson.is_free_preview %}
+                    <span class="badge rounded-pill text-bg-info">{% translate "Free preview" %}</span>
+                    {% endif %}
+                </div>
+                {% empty %}
+                <div class="list-group-item text-muted py-3">{% translate "No lessons in this section yet." %}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="alert alert-light border">{% translate "The content of this course is being prepared." %}</div>
+        {% endfor %}
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card border-0 shadow-sm enroll-card mb-4">
+            {% if course.thumbnail %}
+            <img class="course-thumb rounded-top" src="{{ course.thumbnail.url }}" alt="">
+            {% else %}
+            <span class="course-thumb rounded-top"><i class="bi bi-play-btn" aria-hidden="true"></i></span>
+            {% endif %}
+            <div class="card-body p-4">
+                <div class="fs-2 mb-3">{% include "includes/course_price.html" %}</div>
+
+                {% if is_owner %}
+                <a class="btn btn-primary w-100" href="{% url 'courses:course_detail' course.pk %}">{% translate "Manage this course" %}</a>
+                <p class="text-muted small mt-2 mb-0">{% translate "You teach this course." %}</p>
+                {% elif is_enrolled %}
+                <a class="btn btn-primary w-100" href="{% url 'learning:course_learn' course.pk %}">
+                    <i class="bi bi-play-fill" aria-hidden="true"></i> {% translate "Continue learning" %}
+                </a>
+                <p class="text-success small mt-2 mb-0"><i class="bi bi-check-circle" aria-hidden="true"></i> {% translate "You are enrolled in this course." %}</p>
+                {% elif not course.is_free %}
+                {# No payment provider is connected yet, so this button does nothing on purpose. #}
+                <button type="button" class="btn btn-secondary w-100" disabled aria-disabled="true">
+                    <i class="bi bi-lock" aria-hidden="true"></i> {% translate "Payment Coming Soon" %}
+                </button>
+                <p class="text-muted small mt-2 mb-0">
+                    {% translate "Online payment is not available yet. We are preparing secure payment options, so this course cannot be bought at the moment. Free preview lessons are open to everyone." %}
+                </p>
+                {% elif user.is_student %}
+                <form method="post" action="{% url 'learning:enroll' course.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success w-100">{% translate "Enroll for free" %}</button>
+                </form>
+                {% elif user.is_authenticated %}
+                <div class="alert alert-light border mb-0" role="note">
+                    <i class="bi bi-info-circle" aria-hidden="true"></i>
+                    {% translate "Only student accounts can enroll in courses." %}
+                </div>
+                {% else %}
+                <a class="btn btn-success w-100" href="{% url 'accounts:login' %}?next={{ request.path|urlencode }}">{% translate "Log in to enroll for free" %}</a>
+                <p class="text-muted small mt-2 mb-0">
+                    {% translate "New here?" %} <a href="{% url 'accounts:register' %}">{% translate "Create an account" %}</a>
+                </p>
+                {% endif %}
+
+                <hr>
+                <ul class="list-unstyled small mb-0">
+                    <li class="mb-1"><i class="bi bi-tag" aria-hidden="true"></i> {% translate "Category" %}: {{ course.category }}</li>
+                    <li class="mb-1"><i class="bi bi-translate" aria-hidden="true"></i> {% translate "Language" %}: {{ course.get_language_display }}</li>
+                    <li class="mb-1"><i class="bi bi-bar-chart" aria-hidden="true"></i> {% translate "Level" %}: {{ course.get_level_display }}</li>
+                    {% if course.published_at %}
+                    <li><i class="bi bi-calendar3" aria-hidden="true"></i> {% translate "Published" %}: {{ course.published_at|date:"j M Y" }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <h2 class="h6 text-uppercase text-muted">{% translate "Instructor" %}</h2>
+                <div class="d-flex align-items-center gap-3 mb-2">
+                    <span class="avatar">{{ course.instructor.display_name|first|upper }}</span>
+                    <div>
+                        <div class="fw-semibold">{{ course.instructor.display_name }}</div>
+                        {% if course.instructor.headline %}<div class="text-muted small">{{ course.instructor.headline }}</div>{% endif %}
+                    </div>
+                </div>
+                {% if course.instructor.bio %}<p class="small mb-2">{{ course.instructor.bio|linebreaksbr }}</p>{% endif %}
+                {% if course.instructor.website %}
+                <a class="small" href="{{ course.instructor.website }}" target="_blank" rel="noopener nofollow">
+                    <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> {% translate "Website" %}
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
